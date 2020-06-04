@@ -1,27 +1,35 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 
+interface AudioList {
+  [key: string]: { audio: HTMLAudioElement; title: string };
+}
+
 function App() {
-  const [sounds] = useState<{ [key: string]: HTMLAudioElement }>({
-    "81": new Audio("/music/fm_clonk.wav"),
-    "87": new Audio("/music/ignition-hit.wav"),
-    "69": new Audio("/music/meep.wav"),
-    "65": new Audio("/music/blonky.wav"),
-    "83": new Audio("/music/bwip-1.wav"),
-    "68": new Audio("/music/echoing-tinkle-hit.wav"),
-    "90": new Audio("/music/fx-spindown.wav"),
-    "88": new Audio("/music/metal-decay.wav"),
-    "67": new Audio("/music/twotone-808-cowbell.wav"),
+  const [name, setName] = useState("Hola perras!");
+
+  const [sounds] = useState<AudioList>({
+    "81": { audio: new Audio("/music/fm.wav"), title: "fm" },
+    "87": { audio: new Audio("/music/ignition.wav"), title: "ignition" },
+    "69": { audio: new Audio("/music/meep.wav"), title: "meep" },
+    "65": { audio: new Audio("/music/blonky.wav"), title: "blonky" },
+    "83": { audio: new Audio("/music/bwip.wav"), title: "bwip" },
+    "68": { audio: new Audio("/music/echoing.wav"), title: "echoing" },
+    "90": { audio: new Audio("/music/fx.wav"), title: "fx" },
+    "88": { audio: new Audio("/music/metal.wav"), title: "metal" },
+    "67": { audio: new Audio("/music/twotone.wav"), title: "twotone" },
   });
 
   const playSound = (key: string) => {
     if (key && sounds[key]) {
-      sounds[key].currentTime = 0;
-      sounds[key].play();
+      sounds[key].audio.currentTime = 0;
+      sounds[key].audio.play();
+      setName(sounds[key].title);
     }
   };
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    console.log(sounds);
     const { key } = e.currentTarget.dataset;
     playSound(key as string);
   };
@@ -36,37 +44,74 @@ function App() {
     return () => {
       document.removeEventListener("keydown", handleKeydown);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <div id="drum-machine" className="App">
-      <button data-key="81" onClick={handleClick}>
-        Q
+      <button id="fm" className="drum-pad" data-key="81" onClick={handleClick}>
+        Q<audio id="Q" className="clip" src="/music/fm.wav"></audio>
       </button>
-      <button data-key="87" onClick={handleClick}>
-        W
+      <button
+        id="ignition"
+        className="drum-pad"
+        data-key="87"
+        onClick={handleClick}
+      >
+        W<audio id="W" className="clip" src="/music/ignition.wav"></audio>
       </button>
-      <button data-key="69" onClick={handleClick}>
-        E
+      <button
+        id="meep"
+        className="drum-pad"
+        data-key="69"
+        onClick={handleClick}
+      >
+        E<audio id="E" className="clip" src="/music/meep.wav"></audio>
       </button>
-      <button data-key="65" onClick={handleClick}>
-        A
+      <button
+        id="blonky"
+        className="drum-pad"
+        data-key="65"
+        onClick={handleClick}
+      >
+        A<audio id="A" className="clip" src="/music/blonky.wav"></audio>
       </button>
-      <button data-key="83" onClick={handleClick}>
-        S
+      <button
+        id="bwip"
+        className="drum-pad"
+        data-key="83"
+        onClick={handleClick}
+      >
+        S<audio id="S" className="clip" src="/music/bwip.wav"></audio>
       </button>
-      <button data-key="68" onClick={handleClick}>
-        D
+      <button
+        id="echoing"
+        className="drum-pad"
+        data-key="68"
+        onClick={handleClick}
+      >
+        D<audio id="D" className="clip" src="/music/echoing.wav"></audio>
       </button>
-      <button data-key="90" onClick={handleClick}>
-        Z
+      <button id="fx" className="drum-pad" data-key="90" onClick={handleClick}>
+        Z<audio id="Z" className="clip" src="/music/fx.wav"></audio>
       </button>
-      <button data-key="88" onClick={handleClick}>
-        X
+      <button
+        id="metal"
+        className="drum-pad"
+        data-key="88"
+        onClick={handleClick}
+      >
+        X<audio id="X" className="clip" src="/music/metal.wav"></audio>
       </button>
-      <button data-key="67" onClick={handleClick}>
-        C
+      <button
+        id="twotone"
+        className="drum-pad"
+        data-key="67"
+        onClick={handleClick}
+      >
+        C<audio id="X" className="clip" src="/music/twotone.wav"></audio>
       </button>
+      <div id="display">{name}</div>
     </div>
   );
 }
