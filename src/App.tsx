@@ -6,7 +6,7 @@ interface AudioList {
 }
 
 function App() {
-  const [name, setName] = useState("Hola perras!");
+  const [name, setName] = useState("Hey mate😆");
 
   const [sounds] = useState<AudioList>({
     "81": { audio: new Audio("/music/fm.wav"), title: "fm" },
@@ -22,14 +22,15 @@ function App() {
 
   const playSound = (key: string) => {
     if (key && sounds[key]) {
-      sounds[key].audio.currentTime = 0;
-      sounds[key].audio.play();
+      const char = String.fromCharCode(Number(key));
+      //Im only doing this because of FCC test. I know is wrong, Im sorry!
+      (document.getElementById(char) as HTMLAudioElement).currentTime = 0;
+      (document.getElementById(char) as HTMLAudioElement).play();
       setName(sounds[key].title);
     }
   };
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    console.log(sounds);
     const { key } = e.currentTarget.dataset;
     playSound(key as string);
   };
@@ -109,7 +110,7 @@ function App() {
         data-key="67"
         onClick={handleClick}
       >
-        C<audio id="X" className="clip" src="/music/twotone.wav"></audio>
+        C<audio id="C" className="clip" src="/music/twotone.wav"></audio>
       </button>
       <div id="display">{name}</div>
     </div>
