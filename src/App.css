@@ -32,7 +32,42 @@
   box-shadow: inset 0px 0px 10px 5px rgba(136, 134, 134, 0.6);
 }
 
+.title {
+  text-align: center;
+  font-size: 50px;
+  margin: 30px;
+}
+
 /* This query was necessary for changing the size of the elements on mobile cellphone*/
 @media only screen and (max-width: 800px) {
   /*welcome section media query*/
+  .title-drum-machine {
+    font-size: 60px;
+    margin: 25px;
+  }
+
+  .drum-button {
+    width: 80px;
+    height: 80px;
+    font-size: 45px;
+    margin: 15px;
+  }
+
+  .title {
+    text-align: center;
+    font-size: 45px;
+    margin: 20px;
+  }
+
+  .container1 {
+    display: flex;
+  }
+
+  .container2 {
+    display: flex;
+  }
+
+  .container3 {
+    display: flex;
+  }
 }

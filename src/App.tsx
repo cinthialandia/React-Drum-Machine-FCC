@@ -3,6 +3,19 @@ import "./App.css";
 
 function App() {
   const [clickedKey, setClickedKey] = useState("");
+  const [name, setName] = useState("Hey mate😆");
+
+  const titles: { [key: string]: string } = {
+    "81": "Clonk 😏",
+    "87": "Ignition 😁",
+    "69": "Meep 🤣",
+    "65": "Blonky 😴",
+    "83": "Bwip 🤪",
+    "68": "Tinkle 👻",
+    "90": "Spindown 👽",
+    "88": "Metal 🥴",
+    "67": "Twotone 🤓",
+  };
 
   const [sounds] = useState<{ [key: string]: HTMLAudioElement }>({
     "81": new Audio("/music/fm_clonk.wav"),
@@ -21,6 +34,7 @@ function App() {
       sounds[key].currentTime = 0;
       sounds[key].play();
       setClickedKey(key);
+      setName(titles[key]);
     }
   };
 
@@ -155,6 +169,7 @@ function App() {
           </button>
         </div>
       </div>
+      <div className="title">{name}</div>
     </div>
   );
 }
