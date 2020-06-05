@@ -39,34 +39,82 @@ function App() {
   }, []);
 
   return (
-    <div id="drum-machine" className="App">
-      <button data-key="81" onClick={handleClick}>
-        Q
-      </button>
-      <button data-key="87" onClick={handleClick}>
-        W
-      </button>
-      <button data-key="69" onClick={handleClick}>
-        E
-      </button>
-      <button data-key="65" onClick={handleClick}>
-        A
-      </button>
-      <button data-key="83" onClick={handleClick}>
-        S
-      </button>
-      <button data-key="68" onClick={handleClick}>
-        D
-      </button>
-      <button data-key="90" onClick={handleClick}>
-        Z
-      </button>
-      <button data-key="88" onClick={handleClick}>
-        X
-      </button>
-      <button data-key="67" onClick={handleClick}>
-        C
-      </button>
+    <div className="App">
+      <div className="title-drum-machine">Drum Machine</div>
+      <div id="drum-machine">
+        <button
+          style={{ backgroundColor: "#ffadad" }}
+          className="drum-button"
+          data-key="81"
+          onClick={handleClick}
+        >
+          Q
+        </button>
+        <button
+          style={{ backgroundColor: "#ffd6a5" }}
+          className="drum-button"
+          data-key="87"
+          onClick={handleClick}
+        >
+          W
+        </button>
+        <button
+          style={{ backgroundColor: "#fdffb6" }}
+          className="drum-button"
+          data-key="69"
+          onClick={handleClick}
+        >
+          E
+        </button>
+        <button
+          style={{ backgroundColor: "#caffbf" }}
+          className="drum-button"
+          data-key="65"
+          onClick={handleClick}
+        >
+          A
+        </button>
+        <button
+          style={{ backgroundColor: "#9bf6ff" }}
+          className="drum-button"
+          data-key="83"
+          onClick={handleClick}
+        >
+          S
+        </button>
+        <button
+          style={{ backgroundColor: "#a0c4ff" }}
+          className="drum-button"
+          data-key="68"
+          onClick={handleClick}
+        >
+          D
+        </button>
+        <button
+          style={{ backgroundColor: "#bdb2ff" }}
+          className="drum-button"
+          data-key="90"
+          onClick={handleClick}
+        >
+          Z
+        </button>
+        <button
+          style={{ backgroundColor: "#ffc6ff" }}
+          className="drum-button"
+          data-key="88"
+          onClick={handleClick}
+        >
+          X
+        </button>
+        <button
+          style={{ backgroundColor: "#ffadad" }}
+          className="drum-button"
+          data-key="67"
+          onClick={handleClick}
+        >
+          C
+        </button>
+      </div>
     </div>
   );
 }
