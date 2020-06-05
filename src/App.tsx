@@ -1,33 +1,33 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 
+const sounds: { [key: string]: HTMLAudioElement } = {
+  "81": new Audio("/music/fm_clonk.wav"),
+  "87": new Audio("/music/ignition-hit.wav"),
+  "69": new Audio("/music/meep.wav"),
+  "65": new Audio("/music/blonky.wav"),
+  "83": new Audio("/music/bwip-1.wav"),
+  "68": new Audio("/music/echoing-tinkle-hit.wav"),
+  "90": new Audio("/music/fx-spindown.wav"),
+  "88": new Audio("/music/metal-decay.wav"),
+  "67": new Audio("/music/twotone-808-cowbell.wav"),
+};
+
+const titles: { [key: string]: string } = {
+  "81": "Clonk 😏",
+  "87": "Ignition 😁",
+  "69": "Meep 🤣",
+  "65": "Blonky 😴",
+  "83": "Bwip 🤪",
+  "68": "Tinkle 👻",
+  "90": "Spindown 👽",
+  "88": "Metal 🥴",
+  "67": "Twotone 🤓",
+};
+
 function App() {
   const [clickedKey, setClickedKey] = useState("");
   const [name, setName] = useState("Hey mate😆");
-
-  const titles: { [key: string]: string } = {
-    "81": "Clonk 😏",
-    "87": "Ignition 😁",
-    "69": "Meep 🤣",
-    "65": "Blonky 😴",
-    "83": "Bwip 🤪",
-    "68": "Tinkle 👻",
-    "90": "Spindown 👽",
-    "88": "Metal 🥴",
-    "67": "Twotone 🤓",
-  };
-
-  const [sounds] = useState<{ [key: string]: HTMLAudioElement }>({
-    "81": new Audio("/music/fm_clonk.wav"),
-    "87": new Audio("/music/ignition-hit.wav"),
-    "69": new Audio("/music/meep.wav"),
-    "65": new Audio("/music/blonky.wav"),
-    "83": new Audio("/music/bwip-1.wav"),
-    "68": new Audio("/music/echoing-tinkle-hit.wav"),
-    "90": new Audio("/music/fx-spindown.wav"),
-    "88": new Audio("/music/metal-decay.wav"),
-    "67": new Audio("/music/twotone-808-cowbell.wav"),
-  });
 
   const playSound = (key: string) => {
     if (key && sounds[key]) {
