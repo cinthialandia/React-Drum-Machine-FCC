@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 
 function App() {
+  const [clickedKey, setClickedKey] = useState("");
+
   const [sounds] = useState<{ [key: string]: HTMLAudioElement }>({
     "81": new Audio("/music/fm_clonk.wav"),
     "87": new Audio("/music/ignition-hit.wav"),
@@ -18,6 +20,7 @@ function App() {
     if (key && sounds[key]) {
       sounds[key].currentTime = 0;
       sounds[key].play();
+      setClickedKey(key);
     }
   };
 
@@ -31,6 +34,10 @@ function App() {
     playSound(keyCode);
   };
 
+  const handleTransitionEnd = () => {
+    setClickedKey("");
+  };
+
   useEffect(() => {
     document.addEventListener("keydown", handleKeydown);
     return () => {
@@ -42,78 +49,111 @@ function App() {
     <div className="App">
       <div className="title-drum-machine">Drum Machine</div>
       <div id="drum-machine">
-        <button
-          style={{ backgroundColor: "#ffadad" }}
-          className="drum-button"
-          data-key="81"
-          onClick={handleClick}
-        >
-          Q
-        </button>
-        <button
-          style={{ backgroundColor: "#ffd6a5" }}
-          className="drum-button"
-          data-key="87"
-          onClick={handleClick}
-        >
-          W
-        </button>
-        <button
-          style={{ backgroundColor: "#fdffb6" }}
-          className="drum-button"
-          data-key="69"
-          onClick={handleClick}
-        >
-          E
-        </button>
-        <button
-          style={{ backgroundColor: "#caffbf" }}
-          className="drum-button"
-          data-key="65"
-          onClick={handleClick}
-        >
-          A
-        </button>
-        <button
-          style={{ backgroundColor: "#9bf6ff" }}
-          className="drum-button"
-          data-key="83"
-          onClick={handleClick}
-        >
-          S
-        </button>
-        <button
-          style={{ backgroundColor: "#a0c4ff" }}
-          className="drum-button"
-          data-key="68"
-          onClick={handleClick}
-        >
-          D
-        </button>
-        <button
-          style={{ backgroundColor: "#bdb2ff" }}
-          className="drum-button"
-          data-key="90"
-          onClick={handleClick}
-        >
-          Z
-        </button>
-        <button
-          style={{ backgroundColor: "#ffc6ff" }}
-          className="drum-button"
-          data-key="88"
-          onClick={handleClick}
-        >
-          X
-        </button>
-        <button
-          style={{ backgroundColor: "#ffadad" }}
-          className="drum-button"
-          data-key="67"
-          onClick={handleClick}
-        >
-          C
-        </button>
+        <div className="container1">
+          <button
+            onTransitionEnd={handleTransitionEnd}
+            className={
+              clickedKey === "81" ? "drum-button clicked" : "drum-button"
+            }
+            style={{ backgroundColor: "#ffadad" }}
+            data-key="81"
+            onClick={handleClick}
+          >
+            Q
+          </button>
+          <button
+            onTransitionEnd={handleTransitionEnd}
+            className={
+              clickedKey === "87" ? "drum-button clicked" : "drum-button"
+            }
+            style={{ backgroundColor: "#ffd6a5" }}
+            data-key="87"
+            onClick={handleClick}
+          >
+            W
+          </button>
+          <button
+            onTransitionEnd={handleTransitionEnd}
+            className={
+              clickedKey === "69" ? "drum-button clicked" : "drum-button"
+            }
+            style={{ backgroundColor: "#fdffb6" }}
+            data-key="69"
+            onClick={handleClick}
+          >
+            E
+          </button>
+        </div>
+        <div className="container2">
+          <button
+            onTransitionEnd={handleTransitionEnd}
+            className={
+              clickedKey === "65" ? "drum-button clicked" : "drum-button"
+            }
+            style={{ backgroundColor: "#caffbf" }}
+            data-key="65"
+            onClick={handleClick}
+          >
+            A
+          </button>
+          <button
+            onTransitionEnd={handleTransitionEnd}
+            className={
+              clickedKey === "83" ? "drum-button clicked" : "drum-button"
+            }
+            style={{ backgroundColor: "#9bf6ff" }}
+            data-key="83"
+            onClick={handleClick}
+          >
+            S
+          </button>
+          <button
+            onTransitionEnd={handleTransitionEnd}
+            className={
+              clickedKey === "68" ? "drum-button clicked" : "drum-button"
+            }
+            style={{ backgroundColor: "#a0c4ff" }}
+            data-key="68"
+            onClick={handleClick}
+          >
+            D
+          </button>
+        </div>
+        <div className="container3">
+          <button
+            onTransitionEnd={handleTransitionEnd}
+            className={
+              clickedKey === "90" ? "drum-button clicked" : "drum-button"
+            }
+            style={{ backgroundColor: "#bdb2ff" }}
+            data-key="90"
+            onClick={handleClick}
+          >
+            Z
+          </button>
+          <button
+            onTransitionEnd={handleTransitionEnd}
+            className={
+              clickedKey === "88" ? "drum-button clicked" : "drum-button"
+            }
+            style={{ backgroundColor: "#ffc6ff" }}
+            data-key="88"
+            onClick={handleClick}
+          >
+            X
+          </button>
+          <button
+            onTransitionEnd={handleTransitionEnd}
+            className={
+              clickedKey === "67" ? "drum-button clicked" : "drum-button"
+            }
+            style={{ backgroundColor: "#ffadad" }}
+            data-key="67"
+            onClick={handleClick}
+          >
+            C
+          </button>
+        </div>
       </div>
     </div>
   );
